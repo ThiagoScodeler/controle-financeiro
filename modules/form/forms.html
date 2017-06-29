@@ -30,7 +30,7 @@
 
 <body>
 
-    <div id="wrapper">
+    <div id="wrapper" ng-controller="FormController">
 
        <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -82,31 +82,29 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <form role="form">
+                                    <form method="post" name="formLancamento" id="formLancamento" ng-submit="add(lancamento)" role="form">
                                         <div class="form-group">
                                             <label>Data</label>
-                                            <input class="form-control" type="date">
+                                            <input class="form-control" type="date" ng-model="lancamento.data" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Descrição</label>
-                                            <input class="form-control" placeholder="Digite aqui">
+                                            <input class="form-control" placeholder="Digite aqui" ng-model="lancamento.descricao" required>
                                             <p class="help-block">Exemplo: Salário de Junho</p>
                                         </div>
                                         <label>Valor</label>
                                         <div class="form-group input-group">
                                             <span class="input-group-addon">$</span>
-                                            <input type="text" class="form-control" placeholder="Valor">
+                                            <input type="text" class="form-control" placeholder="Valor" ng-model="lancamento.valor" required>
                                             <span class="input-group-addon">.00</span>
                                         </div>
                                         <div class="form-group">
                                             <label>Tipo</label>
-                                            <select class="form-control">
-                                                <option>Entrada</option>
-                                                <option>Saída / Compra</option>
-                                                <option>A pagar</option>
+                                            <select class="form-control" ng-model="lancamento.tipo" required>
+                                                <option ng-repeat="tipo in tipos" value="{{tipo.id}}">{{tipo.nome}}</option>
                                             </select>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                        <button type="submit" class="btn btn-primary" ng-disabled="formLancamento.$invalid || isUnchanged(lancamento)">Cadastrar</button>
                                         <button type="reset" class="btn btn-danger">Cancelar</button>
                                     </form>
                                 </div>
@@ -130,10 +128,9 @@
     <script src="../../vendor/jquery/jquery.min.js"></script>
 
     <!-- Angular -->
-    <script src="../../vendor/angular/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
 
     <!-- Angular module files -->
-    <script src="../../modules/form/app.js"></script>
     <script src="../../modules/form/controller.js"></script>
     <script src="../../modules/form/service.js"></script>
 

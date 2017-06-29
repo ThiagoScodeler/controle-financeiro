@@ -2,7 +2,11 @@ const express = require('express');
 const router = express.Router();
 const pg = require('pg');
 const path = require('path');
-const connectionString = process.env.DATABASE_URL || 'postgres://postgres:password@localhost:5432/controle_financeiro';
+const connectionString = process.env.DATABASE_URL || 'postgres://postgres:admin@localhost:5432/controle_financeiro';
+
+const cors = require('cors');
+router.use(cors());
+router.options('*', cors());
 
 router.post('/', (req, res, next) => {
   const results = [];
