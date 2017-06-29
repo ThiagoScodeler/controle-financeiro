@@ -85,7 +85,7 @@
                                     <form method="post" name="formLancamento" id="formLancamento" ng-submit="add(lancamento)" role="form">
                                         <div class="form-group">
                                             <label>Data</label>
-                                            <input class="form-control" type="date" ng-model="lancamento.data" required>
+                                            <input class="form-control" type="date" ng-model="lancamento.data_lancamento" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Descrição</label>
@@ -100,8 +100,8 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Tipo</label>
-                                            <select class="form-control" ng-model="lancamento.tipo" required>
-                                                <option ng-repeat="tipo in tipos" value="{{tipo.id}}">{{tipo.nome}}</option>
+                                            <select class="form-control" ng-model="lancamento.tipo_lancamento_id" required>
+                                                <option ng-repeat="t in tipos" value="{{ t.id }}">{{ t.nome }}</option>
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary" ng-disabled="formLancamento.$invalid || isUnchanged(lancamento)">Cadastrar</button>

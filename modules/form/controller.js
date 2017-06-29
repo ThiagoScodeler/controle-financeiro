@@ -56,8 +56,8 @@ function ($scope, FormService) {
         FormService.listarTipoLancamentos()
         .then(
         function(data) {
-            console.log(data);
-            $scope.tipos = data;
+            console.log(data.data);
+            $scope.tipos = data.data;
         },
         function(error) {
             $scope.status = 'Erro ao listar tipos de lançamento';
