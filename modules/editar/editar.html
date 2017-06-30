@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="Form">
+<html lang="en" ng-app="Editar">
 
 <head>
 
@@ -30,7 +30,7 @@
 
 <body>
 
-    <div id="wrapper" ng-controller="FormController">
+    <div id="wrapper" ng-controller="EditarController">
 
        <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -59,7 +59,7 @@
                             <a href="../lancamentos/lancamentos.html"><i class="fa fa-history fa-fw"></i> Lançamentos</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Novo Lançamento</a>
+                            <a href="../forms/forms.html"><i class="fa fa-edit fa-fw"></i> Novo Lançamento</a>
                         </li>
                     </ul>
                 </div>
@@ -71,7 +71,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-10">
-                    <h1 class="page-header">Novo Lançamento</h1>
+                    <h1 class="page-header">Editar Lançamento</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -85,7 +85,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <form method="post" name="formLancamento" id="formLancamento" ng-submit="add(lancamento)" role="form">
+                                    <form method="post" name="formLancamento" id="formLancamento" ng-submit="edit(lancamento)" role="form">
                                         <div class="form-group">
                                             <label>Data</label>
                                             <input class="form-control" type="date" ng-model="lancamento.data_lancamento" required>
@@ -98,7 +98,7 @@
                                         <label>Valor</label>
                                         <div class="form-group input-group">
                                             <span class="input-group-addon">$</span>
-                                            <input type="text" class="form-control" placeholder="Valor" ng-model="lancamento.valor" required>
+                                            <input type="text" class="form-control" placeholder="Valor" ng-model="lancamento.valor"required>
                                             <span class="input-group-addon">.00</span>
                                         </div>
                                         <div class="form-group">
@@ -107,7 +107,7 @@
                                                 <option ng-repeat="t in tipos" value="{{ t.id }}">{{ t.nome }}</option>
                                             </select>
                                         </div>
-                                        <button type="submit" class="btn btn-primary" ng-disabled="formLancamento.$invalid || isUnchanged(lancamento)">Cadastrar</button>
+                                        <button type="submit" class="btn btn-primary" ng-disabled="formLancamento.$invalid || isUnchanged(lancamento)">Editar</button>
                                         <button type="reset" class="btn btn-danger">Cancelar</button>
                                     </form>
                                     <div ng-show="error" class="alert alert-danger" id="errorMessage">{{errorMessage}}
@@ -142,8 +142,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
 
     <!-- Angular module files -->
-    <script src="../../modules/form/controller.js"></script>
-    <script src="../../modules/form/service.js"></script>
+    <script src="../../modules/editar/controller.js"></script>
+    <script src="../../modules/editar/service.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>

@@ -12,7 +12,7 @@ angular.module('Form')
     };
 
     service.listar = function (data) {
-        return $http.get(urlBase, data);
+        return $http.get(urlBase + 'lancamento/'+ data);
     };
 
     service.editar = function (data) {
@@ -24,7 +24,6 @@ angular.module('Form')
     };
 
     service.listarTipoLancamentos = function () {
-        console.log(urlBase + 'tipo-lancamento');
         return $http.get(urlBase + 'tipo-lancamento');
     };
 
