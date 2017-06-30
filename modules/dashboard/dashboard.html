@@ -30,7 +30,7 @@
 
 <body>
 
-    <div id="wrapper">
+    <div id="wrapper" ng-controller="DashboardController">
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -43,7 +43,7 @@
                 </button>
                 <a class="navbar-brand" href="dashboard.html">Controle Financeiro</a>
             </div>
-            
+
             <!-- /.navbar-top-links -->
 
             <div class="navbar-default sidebar" role="navigation">
@@ -85,11 +85,12 @@
                                     <i class="fa fa-money fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
+                                    <div class="huge">{{ saldo }}</div>
                                     <div>Saldo</div>
                                 </div>
                             </div>
                         </div>
+                        <!--
                         <a href="#">
                             <div class="panel-footer">
                                 <span class="pull-left">Detalhes</span>
@@ -97,6 +98,7 @@
                                 <div class="clearfix"></div>
                             </div>
                         </a>
+                        -->
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -107,11 +109,12 @@
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
+                                    <div class="huge">{{ entradas }}</div>
                                     <div>Entradas</div>
                                 </div>
                             </div>
                         </div>
+                        <!--
                         <a href="#">
                             <div class="panel-footer">
                                 <span class="pull-left">Detalhes</span>
@@ -119,6 +122,7 @@
                                 <div class="clearfix"></div>
                             </div>
                         </a>
+                        -->
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -129,11 +133,12 @@
                                     <i class="fa fa-shopping-cart fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
+                                    <div class="huge">{{ saidas }}</div>
                                     <div>Compras / Saídas</div>
                                 </div>
                             </div>
                         </div>
+                        <!--
                         <a href="#">
                             <div class="panel-footer">
                                 <span class="pull-left">Detalhes</span>
@@ -141,6 +146,7 @@
                                 <div class="clearfix"></div>
                             </div>
                         </a>
+                        -->
                     </div>
                 </div>
 
@@ -152,11 +158,12 @@
                                     <i class="fa fa-times fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
-                                    <div>A pagar</div>
+                                    <div class="huge">{{ pagar }}</div>
+                                    <div>Contas à pagar</div>
                                 </div>
                             </div>
                         </div>
+                        <!--
                         <a href="#">
                             <div class="panel-footer">
                                 <span class="pull-left">Detalhes</span>
@@ -164,13 +171,14 @@
                                 <div class="clearfix"></div>
                             </div>
                         </a>
+                        -->
                     </div>
                 </div>
 
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-7">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-bar-chart-o fa-fw"></i> Fluxo Mensal
@@ -189,56 +197,21 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-4">
+                                <div class="col-lg-5">
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-hover table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
+                                                    <th>Descrição</th>
                                                     <th>Data</th>
                                                     <th>Total</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>3326</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>$321.33</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3325</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>$234.34</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3324</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>$724.17</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3323</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>$23.71</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3322</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>$8345.23</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3321</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>$245.12</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3320</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>$5663.54</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3319</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>$943.45</td>
+                                                <tr class="gradeA" ng-repeat="lancamento in gastos | orderBy:'data_lancamento'">
+                                                    <td>{{lancamento.descricao}}</td>
+                                                    <td>{{lancamento.data_lancamento | date}}</td>
+                                                    <td>R$ {{lancamento.valor}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -246,7 +219,7 @@
                                     <!-- /.table-responsive -->
                                 </div>
                                 <!-- /.col-lg-4 (nested) -->
-                                <div class="col-lg-8">
+                                <div class="col-lg-7">
                                     <div id="morris-bar-chart"></div>
                                 </div>
                                 <!-- /.col-lg-8 (nested) -->
@@ -255,27 +228,35 @@
                         </div>
                         <!-- /.panel-body -->
                     </div>
-                    
+
                 </div>
                 <!-- /.col-lg-8 -->
-                <div class="col-lg-4">
+                <div class="col-lg-5">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-bell fa-fw"></i> Últimos Lançamentos
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-shopping-cart fa-fw"></i> Nova Compra / Saída
-                                    <span class="pull-right text-muted small"><em>9:49 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-money fa-fw"></i> Pagamento Recebido
-                                    <span class="pull-right text-muted small"><em>Ontem</em>
-                                    </span>
-                                </a>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Descrição</th>
+                                            <th>Data</th>
+                                            <th>Tipo</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="gradeA" ng-repeat="lancamento in ultimosLancamentos | orderBy:'data_lancamento'">
+                                            <td>{{ lancamento.descricao }}</td>
+                                            <td>{{ lancamento.data_lancamento | date}}</td>
+                                            <td>{{ lancamento.nome }}</td>
+                                            <td>R$ {{ lancamento.valor }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                             <!-- /.list-group -->
                             <a href="#" class="btn btn-default btn-block">Ver Todos</a>
@@ -316,4 +297,5 @@
     <script src="../../dist/js/sb-admin-2.js"></script>
 
 </body>
+
 </html>

@@ -49,7 +49,9 @@ router.get('/', (req, res, next) => {
       return res.status(500).json({success: false, data: err});
     }
     // SQL Query > Select Data
-    const query = client.query('SELECT lancamentos.id, lancamentos.data_lancamento, lancamentos.descricao, lancamentos.valor, tipo_lancamento.nome FROM lancamentos JOIN tipo_lancamento ON lancamentos.tipo_lancamento_id = tipo_lancamento.id;');
+    const query = client.query('SELECT lancamentos.id, lancamentos.data_lancamento, lancamentos.descricao, \
+    lancamentos.valor, tipo_lancamento.nome FROM lancamentos JOIN tipo_lancamento \
+    ON lancamentos.tipo_lancamento_id = tipo_lancamento.id;');
     // Stream results back one row at a time
     query.on('row', (row) => {
       results.push(row);
