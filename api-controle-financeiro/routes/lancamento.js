@@ -49,7 +49,7 @@ router.get('/', (req, res, next) => {
       return res.status(500).json({success: false, data: err});
     }
     // SQL Query > Select Data
-    const query = client.query('SELECT * FROM lancamentos ORDER BY id ASC;');
+    const query = client.query('SELECT lancamentos.id, lancamentos.data_lancamento, lancamentos.descricao, lancamentos.valor, tipo_lancamento.nome FROM lancamentos JOIN tipo_lancamento ON lancamentos.tipo_lancamento_id = tipo_lancamento.id;');
     // Stream results back one row at a time
     query.on('row', (row) => {
       results.push(row);
@@ -135,7 +135,7 @@ router.delete('/:lancamento_id', (req, res, next) => {
     // SQL Query > Delete Data
     client.query('DELETE FROM lancamentos WHERE id=($1)', [id]);
     // SQL Query > Select Data
-    var query = client.query('SELECT * FROM items ORDER BY id ASC');
+    var query = client.query('SELECT * FROM lancamentos ORDER BY id ASC');
     // Stream results back one row at a time
     query.on('row', (row) => {
       results.push(row);

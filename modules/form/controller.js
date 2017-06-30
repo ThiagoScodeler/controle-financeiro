@@ -6,16 +6,19 @@ angular.module('Form',[])
 function ($scope, FormService) {
 
     listTipoLancamento();
-    $scope.status;
 
     $scope.add = function (lancamento) {
         FormService.cadastrar(lancamento)
          .then(
         function(data) {
-            $scope.status = 'Lançamento adicionado com sucesso';
+            $scope.success = true;
+            $scope.successMessage = 'Lançamento adicionado com sucesso';
+            $scope.reset();
         },
         function(error) {
-            $scope.status = 'Erro ao adicionar lançamento';
+            $scope.error = true;
+            $scope.errorMessage = 'Erro ao adicionar lançamento';
+            $scope.reset();
         });
     };
 
@@ -23,10 +26,10 @@ function ($scope, FormService) {
         FormService.listar(lancamento.id)
         .then(
         function(data) {
-            $scope.status = 'Lançamento listado com sucesso';
+           
         },
         function(error) {
-            $scope.status = 'Erro ao listar lançamento';
+           
         });
     };
 
@@ -34,10 +37,10 @@ function ($scope, FormService) {
         FormService.remover(lancamento.id)
         .then(
         function(data) {
-            $scope.status = 'Lançamento removido com sucesso';
+            
         },
         function(error) {
-            $scope.status = 'Erro ao remover lançamento';
+            
         });
     };
 
@@ -56,12 +59,15 @@ function ($scope, FormService) {
         FormService.listarTipoLancamentos()
         .then(
         function(data) {
-            console.log(data.data);
             $scope.tipos = data.data;
         },
         function(error) {
             $scope.status = 'Erro ao listar tipos de lançamento';
         });
+    };
+
+    $scope.reset = function() {
+        $scope.lancamento = angular.copy($scope.master);
     };
 
 }]);

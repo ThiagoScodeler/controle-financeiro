@@ -56,6 +56,9 @@
                             <a href="../chart/chart.html"><i class="fa fa-bar-chart-o fa-fw"></i> Relatórios Gráficos</a>
                         </li>
                         <li>
+                            <a href="../lancamentos/lancamentos.html"><i class="fa fa-history fa-fw"></i> Lançamentos</a>
+                        </li>
+                        <li>
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Novo Lançamento</a>
                         </li>
                     </ul>
@@ -107,6 +110,13 @@
                                         <button type="submit" class="btn btn-primary" ng-disabled="formLancamento.$invalid || isUnchanged(lancamento)">Cadastrar</button>
                                         <button type="reset" class="btn btn-danger">Cancelar</button>
                                     </form>
+                                    <div ng-show="error" class="alert alert-danger" id="errorMessage">{{errorMessage}}
+                                        <button class="close" data-dismiss="alert">x</button>
+                                    </div>
+
+                                    <div ng-show="success" class="alert alert-success" id="successMessage">{{successMessage}}
+                                        <button class="close" data-dismiss="alert">x</button>
+                                    </div>
                                 </div>
                             </div>
                             <!-- /.row (nested) -->

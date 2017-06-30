@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('Form')
+angular.module('Lancamentos')
 
-.factory('FormService', ['$http', function ($http) {
+.factory('LancamentosService', ['$http', function ($http) {
 
     var service = {};
     var urlBase = 'http://54.233.186.50:3000/api/';
@@ -20,12 +20,12 @@ angular.module('Form')
     };
 
     service.remover = function (data) {
-        return $http.delete(urlBase, data);
+        console.log(data);
+        return $http.delete(urlBase + 'lancamento/'+ data);
     };
 
-    service.listarTipoLancamentos = function () {
-        console.log(urlBase + 'tipo-lancamento');
-        return $http.get(urlBase + 'tipo-lancamento');
+    service.listarLancamentos = function () {
+        return $http.get(urlBase + 'lancamento');
     };
 
   return service;
