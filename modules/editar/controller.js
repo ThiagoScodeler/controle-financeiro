@@ -23,7 +23,13 @@ function ($scope, $location, EditarService) {
         EditarService.listar(lancamento_id)
         .then(
         function(data) {
-           //$scope.lancamento = data.data;
+            console.log(data.data);
+            var date = new Date(data.data[0].data_lancamento);
+            $scope.lancamento = {
+                data_lancamento: date,
+                descricao: data.data[0].descricao,
+                valor: data.data[0].valor
+            }
         },
         function(error) {
             $scope.error = true;
@@ -40,6 +46,7 @@ function ($scope, $location, EditarService) {
             $scope.success = true;
             $scope.successMessage = 'Lançamento editado com sucesso';
             $scope.reset();
+            window.history.back();
         },
         function(error) {
             $scope.error = true;

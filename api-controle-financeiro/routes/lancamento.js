@@ -77,7 +77,7 @@ router.get('/:lancamento_id', (req, res, next) => {
       return res.status(500).json({success: false, data: err});
     }
     // SQL Query > Select Data
-    const query = client.query('SELECT * FROM lancamentos where id=($1);',[id]);
+    const query = client.query('select * from lancamentos, tipo_lancamento where lancamentos.id=($1) and lancamentos.tipo_lancamento_id = tipo_lancamento.id;',[id]);
     // Stream results back one row at a time
     query.on('row', (row) => {
       results.push(row);
