@@ -8,6 +8,7 @@ function ($scope, FormService) {
     listTipoLancamento();
 
     $scope.add = function (lancamento) {
+        console.log(lancamento);
         FormService.cadastrar(lancamento)
          .then(
         function(data) {
@@ -22,39 +23,6 @@ function ($scope, FormService) {
         });
     };
 
-    $scope.list = function (lancamento) {
-        FormService.listar(lancamento.id)
-        .then(
-        function(data) {
-           
-        },
-        function(error) {
-           
-        });
-    };
-
-    $scope.remove = function (lancamento) {
-        FormService.remover(lancamento.id)
-        .then(
-        function(data) {
-            
-        },
-        function(error) {
-            
-        });
-    };
-
-    $scope.edit = function (lancamento) {
-        FormService.editar(lancamento)
-        .then(
-        function(data) {
-            $scope.status = 'Lançamento editado com sucesso';
-        },
-        function(error) {
-            $scope.status = 'Erro ao editar lançamento';
-        });
-    };
-
     function listTipoLancamento() {
         FormService.listarTipoLancamentos()
         .then(
@@ -62,7 +30,8 @@ function ($scope, FormService) {
             $scope.tipos = data.data;
         },
         function(error) {
-            $scope.status = 'Erro ao listar tipos de lançamento';
+            $scope.error = true;
+            $scope.errorMessage = 'Erro ao listar lançamento';
         });
     };
 
