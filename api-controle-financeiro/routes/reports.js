@@ -109,7 +109,7 @@ router.get('/check-saldo', (req, res, next) => {
         const query = client.query('SELECT l.tipo_lancamento_id as tipo_id, t.nome as tipo_nome, \
         sum(l.valor) as total, count(l.id) as quantidade \
         FROM lancamentos l join tipo_lancamento t on t.id = l.tipo_lancamento_id \
-        GROUP BY (l.tipo_lancamento_id, t.nome) ORDER BY tipo_id ASC;');
+        GROUP BY l.tipo_lancamento_id, t.nome ORDER BY tipo_id ASC;');
         // Stream results back one row at a time
         query.on('row', (row) => {
             if (row['tipo_id'] == 3) {
